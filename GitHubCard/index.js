@@ -1,8 +1,14 @@
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
-           https://api.github.com/users/<your name>
+           https://api.github.com/users/OldDognoob
 */
-
+axios.get('https://api.github.com/users/OldDognoob')
+.then(response => {
+  console.log(response);
+})
+.catch(error => {
+  console.log('error');
+});
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -25,6 +31,7 @@
 */
 
 const followersArray = [];
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -53,3 +60,22 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+function cardUser(userinfo){
+   // 1- Create HTML markup
+  const card = document.createElement('div');
+  const cardimage = document.createElement('img');
+  const cardinfo = document.createElement('div');
+  const cardh3 = dosument.createElement('h3');
+  const carduserNamepara1=document.createElement('p');
+  const cardLocationpara2=document.createElement('p');
+  const cardProfilepara3=document.createElement('p');
+  const cardhref=document.createElement('a');
+  const cardfollowerspara=document.createElement('p');
+  const cardfollowingpara=document.createElement('p');
+  const cardbiopara=document.createElement('p');
+
+  // 2- Define HTML structure
+
+  
+}
