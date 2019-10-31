@@ -33,6 +33,9 @@ axios.get('https://api.github.com/users/OldDognoob')
 const followersArray = [];
 
 
+
+
+
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
@@ -70,12 +73,50 @@ function cardUser(userinfo){
   const carduserNamepara1=document.createElement('p');
   const cardLocationpara2=document.createElement('p');
   const cardProfilepara3=document.createElement('p');
-  const cardhref=document.createElement('a');
-  const cardfollowerspara=document.createElement('p');
-  const cardfollowingpara=document.createElement('p');
-  const cardbiopara=document.createElement('p');
+  const cardaddresshref=document.createElement('a');
+  const cardfollowerspara4=document.createElement('p');
+  const cardfollowingpara5=document.createElement('p');
+  const cardbiopara6=document.createElement('p');
 
   // 2- Define HTML structure
+  card.appendChild(h3);
+  card.appendChild(userNamepara1);
+  card.appendChild(Locationpara2);
+  card.appendChild(Profilepara3);
+  card.appendChild(followerspara4);
+  card.appendChild(followingpara5);
+  card.appendChild(biopara6);
+  card.appendChild(addresshref);
 
-  
+  // 3- Add some class names
+  carddiv.classList.add('.card');
+  carddiv.classList.add('.card-info');
+  cardh3.classList.add('.name');
+  carduserNamepara1.classList.add('.username');
+
+  // 4- Add some content!
+  h3.textContent=userInfo.name;
+  userNamepara1.textContent=userInfo.login;
+  locationpara2.textContent= userInfo.location;
+  profilepara3.textContent='Profile:';
+  anchor.textContent=userAddress.html_url;
+  followerspara4.textContent=`Followers: ${userInfo.followers}`;
+  followingpara5.textContent=`Following: ${userInfo.following}`;
+  biopara6.textContent=`Bio: ${userInfo.bio}`;
+
+
+  return card;
 }
+
+const divcard = document.querySelector('.cards');
+// Making API Request
+axios.get('https://api.github.com/users/OldDognoob')
+.then(response =>{
+ response.data.forEach(users => {
+   card.append.cardUser(users.data);
+ });
+})
+.catch(error =>{
+ console.log(error);
+});
+
