@@ -6,9 +6,10 @@ axios
   .get("https://api.github.com/users/OldDognoob")
   .then(response => {
     console.log(response.data);
+    cardUser(response.data);
   })
   .catch(error => {
-    console.log("error");
+    console.log(error.response);
   });
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -81,6 +82,8 @@ function cardUser(data) {
   parent.appendChild(card);
   card.appendChild(cardinfo);
   card.appendChild(cardimage);
+  cardimage.src = data.avatar_url;
+
   cardinfo.appendChild(cardh3);
   cardinfo.appendChild(p1);
   cardinfo.appendChild(p2);
@@ -97,14 +100,16 @@ function cardUser(data) {
   p1.classList.add("username");
 
   // 4- Add some content!
-  h3.textContent = data.name;
-  p1.textContent = data.login;
-  p2.textContent = data.location;
+  cardh3.textContent = `${data.name}`;
+  p1.textContent = `${data.login}`;
+  p2.textContent = `Location: ${data.location}`;
   p3.textContent = `Profile: `;
-  a.textContent = userAddress.html_url;
+  a.textContent = data.html_url;
   p4.textContent = `Followers: ${userInfo.followers}`;
   p5.textContent = `Following: ${userInfo.following}`;
   p6.textContent = `Bio: ${userInfo.bio}`;
+  cardimage.src = data.avatar_url;
+  a.href = data.html_url;
 
   // 5- Add some attributes
 
@@ -112,7 +117,7 @@ function cardUser(data) {
 
   return card;
 }
-cardUser();
+
 
 const card = document.querySelector(".cards");
 
