@@ -4,19 +4,13 @@
 */
 axios
   .get("https://api.github.com/users/OldDognoob")
-  // .then(response => {
-  //   console.log(response.data);
-  //   cardUser(response.data);
-  // })
-  // .catch(error => {
-  //   console.log(error.response);
   .then(response => {
     const data = response.data;
     cards.appendChild(cardMaker(response.data));
     console.log(response.data);
   })
   .catch(error => {
-    console.log(error)
+    console.log(error);
   });
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -28,6 +22,7 @@ axios
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+       
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -39,7 +34,38 @@ axios
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [' tetondan','dustinmyers','justsml','luishrd','bigknell'];
+followersArray.forEach(user => {
+  axios
+    .get(`https://api.github.com/users/${user}`)
+    .then(res => {
+      const userCard = cardMaker(res.data);
+      document.querySelector(".cards").appendChild(userCard);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
+
+// axios.get('https://api.github.com/users/<OldDogNoob>/followers') 
+// .then(function (response) {
+//   const followersArray = response.data
+
+//   followersArray.forEach((follower) => {
+//     axios.get(follower.url)
+//     .then(function (response) {
+//       const card = document.querySelector(".cards");
+//       card.appendChild(cardMaker(response.data));
+//     })
+//   })
+// })
+
+
+
+
+// 
+
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
